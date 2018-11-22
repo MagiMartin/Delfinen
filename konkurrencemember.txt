@@ -1,0 +1,3 @@
+wenger 12 null aktiv null 1000 johnjohn crawl,butterfly,
+maj 12 null aktiv null 1000 johnjohn crawl,butterfly,
+hej 255 null aktiv null 1200 basse crawl,
