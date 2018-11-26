@@ -3,7 +3,7 @@ import java.io.*;
 
 public class MemberHandling{
 
-   String kontigentType[] = {"junior","senior","passiv"};
+   String kontigentType[] = {"junior","senior"};
    int kontigentPris[] = {1000,1600,500};
    ArrayList<Member> memberlist = new ArrayList<Member>();
    int kontigent;
@@ -18,28 +18,49 @@ public class MemberHandling{
       while (inputkonkurrence.hasNext()) {
          String name = inputkonkurrence.next();
          int age = inputkonkurrence.nextInt();
-         String part = inputkonkurrence.next();
+         String type = inputkonkurrence.next();  
          String status = inputkonkurrence.next();
-         String type = inputkonkurrence.next();
+         String part = inputkonkurrence.next();
          int kontigent = inputkonkurrence.nextInt();
          String trainer = inputkonkurrence.next();
          String disciplin = inputkonkurrence.next();
-         memberlist.add(new Konkurrence(name,trainer,age,status,part,membertype,kontigent,disciplin));
+         memberlist.add(new Konkurrence(name,trainer,age,status,part,type,kontigent,disciplin));
       }
-      while (inputkonkurrence.hasNext()) {
-         String name = inputkonkurrence.next();
-         int age = inputkonkurrence.nextInt();
-         String part = inputkonkurrence.next();
-         String status = inputkonkurrence.next();
-         String type = inputkonkurrence.next();
-         int kontigent = inputkonkurrence.nextInt();
-         memberlist.add(new Motionist(name,age,status,part,membertype,kontigent));
+      while (inputmotion.hasNext()) {
+         String name = inputmotion.next();
+         int age = inputmotion.nextInt();
+         String type = inputmotion.next();
+         String status = inputmotion.next();
+         String part = inputmotion.next();
+         int kontigent = inputmotion.nextInt();
+         memberlist.add(new Motionist(name,age,status,part,type,kontigent));
       }  
    }
 
+
+   public void restance(){
+   
+   int rand = (int)(Math.random()*4);
+   int rand1 = (int)(Math.random()*4);
    
    
-   public void newMember(){  
+   memberlist.get(rand).setBetalt(false);
+   memberlist.get(rand1).setBetalt(false);
+   
+    for(Member m : memberlist){
+         if (m.getBetalt() == false){
+            System.out.println(m.getName());
+         }
+      } 
+     for(Member m : memberlist){
+         m.setBetalt(true);         
+      }
+   
+   }
+   
+   
+   public void newMember(){ 
+   try{ 
       System.out.println("navn");
       String name = input.next();
       System.out.println("alder");
@@ -49,7 +70,12 @@ public class MemberHandling{
       System.out.println("motionist/konkurrence");
       String part = input.next();  
       if(status.equals("passiv")){
-         kontigent = 500;
+         kontigent = kontigentPris[2];
+        if(age <= 18){ 
+         membertype = kontigentType[0];
+         }else{
+         membertype = kontigentType[1];
+         }
       }else if (age <= 18 && status.equals("aktiv")){
          kontigent = kontigentPris[0];
          membertype = kontigentType[0];
@@ -70,9 +96,12 @@ public class MemberHandling{
             trainer = "johnjohn";}
          else{trainer = "basse";}         
          System.out.println("hvor mange svømme discipliner vi har : [crawl,butterfly]");
-         System.out.println("Skriv discipliner kunb adskilt af komma");
+         System.out.println("Skriv discipliner kun adskilt af komma");
          String antal_disciplin = input.next();
          memberlist.add(new Konkurrence(name,trainer,age,status,part,membertype,kontigent,antal_disciplin));
+      }
+      }catch(Exception i){
+         System.out.println("Wrong input");
       }
    }
    

@@ -3,19 +3,21 @@ import java.io.*;
 public class Main{
 
 
-public static void main(String[] args)throws FileNotFoundException{
+public static void main(String[] args)throws FileNotFoundException, InterruptedException{
 
 
 MemberHandling member = new MemberHandling();
 KonkurrenceUdtagelse udtagelse = new KonkurrenceUdtagelse();
-
-//member.registerMembers();
-//member.newMember();
-//member.saveMembers();
+DelfinenMenu menu = new DelfinenMenu();
 
 
-//udtagelse.setNewTime();
-udtagelse.trackTime();
+
+
+menu.startMenu();
+
+
+
+
 
 
 }

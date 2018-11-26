@@ -1,1 +1,3 @@
-helle 61 senior aktiv motionist 1200
+mads 29 senior aktiv motionist 1600
+martin 88 passiv passiv motionist 500
+lars 42 senior aktiv motionist 1600

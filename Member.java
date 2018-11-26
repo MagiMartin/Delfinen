@@ -6,6 +6,7 @@ public class Member{
    String memberpart;
    int kontigent;
    String name;
+   boolean betalt = true;
 
 
    public Member(String name,int age, String memberstatus, String memberpart,String membertype, int kontigent){
@@ -35,5 +36,11 @@ public class Member{
       return kontigent;}
    public String getName(){
       return name;}
+   public void setBetalt(boolean betalt){
+      this.betalt = betalt;
+   }
+   public boolean getBetalt(){
+      return betalt;
+   }
 
 }

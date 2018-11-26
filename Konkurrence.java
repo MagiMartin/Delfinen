@@ -5,6 +5,8 @@ public class Konkurrence extends Member{
    private String trainer;
    private int tid;
    private String dato;
+   private String competition;
+   private int placering;
    ArrayList<String> swimDiscipline = new ArrayList<String>();
 
    public Konkurrence(String name,int age,String memberstatus, String memberpart,String membertype, int kontigent){
@@ -28,6 +30,15 @@ public class Konkurrence extends Member{
     this.tid = tid;
     this.dato = dato;
    }
+   
+   public Konkurrence(String name,int tid, String dato, String competition,int placering){
+    super(name);
+    this.tid = tid;
+    this.dato = dato;
+    this.competition = competition;
+    this.placering = placering;
+   }
+
 
    public String getDisciplin(){
       
@@ -43,5 +54,8 @@ public class Konkurrence extends Member{
       return trainer;}
    public int getTid(){
       return tid;}
-
+   public String getCompetition(){
+      return competition;}
+   public int getPlacering(){
+      return placering;}
 }
