@@ -1,13 +1,12 @@
 public class Member{
 
-   int age;
-   String membertype;
-   String memberstatus;
-   String memberpart;
-   int kontigent;
-   String name;
-   boolean betalt = true;
-
+   private int age;
+   private String membertype;
+   private String memberstatus;
+   private String memberpart;
+   private int kontigent;
+   private String name;
+   private boolean betalt = true;
 
    public Member(String name,int age, String memberstatus, String memberpart,String membertype, int kontigent){
    
@@ -42,5 +41,4 @@ public class Member{
    public boolean getBetalt(){
       return betalt;
    }
-
 }

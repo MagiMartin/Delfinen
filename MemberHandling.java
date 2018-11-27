@@ -3,15 +3,13 @@ import java.io.*;
 
 public class MemberHandling{
 
-   String kontigentType[] = {"junior","senior"};
-   int kontigentPris[] = {1000,1600,500};
-   ArrayList<Member> memberlist = new ArrayList<Member>();
-   int kontigent;
-   String membertype;
-   Scanner input = new Scanner(System.in);
-
-   
-   
+   private String kontigentType[] = {"junior","senior"};
+   private int kontigentPris[] = {1000,1600,500};
+   private ArrayList<Member> memberlist = new ArrayList<Member>();
+   private int kontigent;
+   private String membertype;
+   private Scanner input = new Scanner(System.in);
+ 
    public void registerMembers()throws FileNotFoundException{   
       Scanner inputmotion = new Scanner(new File("motionmember.txt"));
       Scanner inputkonkurrence = new Scanner(new File("konkurrencemember.txt"));   
@@ -37,75 +35,84 @@ public class MemberHandling{
       }  
    }
 
-
    public void restance(){
    
-   int rand = (int)(Math.random()*4);
-   int rand1 = (int)(Math.random()*4);
+      int rand = (int)(Math.random()*4);
+      int rand1 = (int)(Math.random()*4);
    
+      System.out.println("");
+      System.out.println("Disse personer skylder kontigent: ");
+      memberlist.get(rand).setBetalt(false);
+      memberlist.get(rand1).setBetalt(false);
+      System.out.println("");
+
    
-   memberlist.get(rand).setBetalt(false);
-   memberlist.get(rand1).setBetalt(false);
-   
-    for(Member m : memberlist){
+      for(Member m : memberlist){
          if (m.getBetalt() == false){
-            System.out.println(m.getName());
+            System.out.println("Navn: "+ m.getName() + " " + "Alder: " + m.getAge() + " " + "Type: " + m.getMemberType() + " " + "Status: "+m.getMemberStatus() + " " +"Aktivitet: "+ m.getMemberPart() + " " +"Belob: "+ m.getKontigent());
+
          }
       } 
-     for(Member m : memberlist){
+      for(Member m : memberlist){
          m.setBetalt(true);         
       }
    
    }
-   
-   
+    
    public void newMember(){ 
-   try{ 
-      System.out.println("navn");
-      String name = input.next();
-      System.out.println("alder");
-      int age = input.nextInt();   
-      System.out.println("aktiv/passiv");
-      String status = input.next();   
-      System.out.println("motionist/konkurrence");
-      String part = input.next();  
-      if(status.equals("passiv")){
-         kontigent = kontigentPris[2];
-        if(age <= 18){ 
-         membertype = kontigentType[0];
-         }else{
-         membertype = kontigentType[1];
+      try{ 
+         System.out.println("");
+         System.out.print("navn: ");
+         String name = input.next();
+         System.out.print("alder: ");
+         int age = input.nextInt();   
+         System.out.print("aktiv/passiv: ");
+         String status = input.next();   
+         System.out.print("motionist/konkurrence: ");
+         String part = input.next();  
+         if(status.equals("passiv")){
+            kontigent = kontigentPris[2];
+            if(age <= 18){ 
+               membertype = kontigentType[0];
+            }else{
+               membertype = kontigentType[1];
+            }
+         }else if (age <= 18 && status.equals("aktiv")){
+            kontigent = kontigentPris[0];
+            membertype = kontigentType[0];
+         }else if ((age >= 18 & age <= 59) && status.equals("aktiv")){
+            kontigent = kontigentPris[1];
+            membertype =  kontigentType[1];
+         }else if (age >= 60 && status.equals("aktiv")){
+            kontigent = kontigentPris[1]-400;
+            membertype = kontigentType[1];
+         } 
+         if(part.equals("motionist")){
+            System.out.println("Navn: " + name + " " + "Alder: " + age + " " + "Status: " + status + " " + "Aktivitet: "+ part + " " +"Type: "+ membertype + " " +"Belob: "+ kontigent);
+            System.out.print("Er det de rigtge informationer?: ");
+            String answer;
+            answer = input.next();
+               if(answer.equals("ja")){
+                  memberlist.add(new Motionist(name,age,status,part,membertype,kontigent));
+               }else{
+                  newMember();
+               }
+         }else if(part.equals("konkurrence")){
+         
+            String trainer;
+         
+            if(age < 18 ){
+               trainer = "Bear_G.";}
+            else{trainer = "Arnold_S.";}         
+            System.out.println("hvor mange svomme discipliner vi har: (eks. Crawl,Butterfly,Rygsvomning)");
+            System.out.print("Skriv discipliner kun adskilt af komma: ");
+            String antal_disciplin = input.next();
+            memberlist.add(new Konkurrence(name,trainer,age,status,part,membertype,kontigent,antal_disciplin));
          }
-      }else if (age <= 18 && status.equals("aktiv")){
-         kontigent = kontigentPris[0];
-         membertype = kontigentType[0];
-      }else if ((age >= 18 & age <= 59) && status.equals("aktiv")){
-         kontigent = kontigentPris[1];
-         membertype =  kontigentType[1];
-      }else if (age >= 60 && status.equals("aktiv")){
-         kontigent = kontigentPris[1]-400;
-         membertype = kontigentType[1];
-      } 
-      if(part.equals("motionist")){
-         memberlist.add(new Motionist(name,age,status,part,membertype,kontigent));
-      }else if(part.equals("konkurrence")){
-         
-         String trainer;
-         
-         if(age < 18 ){
-            trainer = "johnjohn";}
-         else{trainer = "basse";}         
-         System.out.println("hvor mange svømme discipliner vi har : [crawl,butterfly]");
-         System.out.println("Skriv discipliner kun adskilt af komma");
-         String antal_disciplin = input.next();
-         memberlist.add(new Konkurrence(name,trainer,age,status,part,membertype,kontigent,antal_disciplin));
-      }
       }catch(Exception i){
-         System.out.println("Wrong input");
+         System.out.println("Forkert input");
       }
    }
-   
-   
    
    public void saveMembers()throws FileNotFoundException{   
       PrintStream output = new PrintStream("motionmember.txt");

@@ -2,8 +2,11 @@ crawl morten 56 11/12-13
 crawl don 39 10/7-18
 crawl minny 40 8/7-18
 crawl minny 20 30/7-17
-crawl don 38 8/9-18
+crawl don 5 8/9-18
+crawl mads 12 12/12-17
+crawl mads 11 12/12-17
+crawl mads 9 12/12-17
 butterfly flamingo 40 1/7-20
 butterfly fedte 45 8/10-21
 crawl mogens 55 8/7-18
-
+crawl helle 22 8/7-18

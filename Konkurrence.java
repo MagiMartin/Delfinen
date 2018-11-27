@@ -19,24 +19,24 @@ public class Konkurrence extends Member{
       String[] elements = disciplin1.split(",");
       
       for(int i=0 ; i<elements.length;i++){  
-      swimDiscipline.add(elements[i]);
+         swimDiscipline.add(elements[i]);
       }
       
       this.trainer = trainer; 
    }
    
    public Konkurrence(String name,int tid, String dato){
-    super(name);
-    this.tid = tid;
-    this.dato = dato;
+      super(name);
+      this.tid = tid;
+      this.dato = dato;
    }
    
    public Konkurrence(String name,int tid, String dato, String competition,int placering){
-    super(name);
-    this.tid = tid;
-    this.dato = dato;
-    this.competition = competition;
-    this.placering = placering;
+      super(name);
+      this.tid = tid;
+      this.dato = dato;
+      this.competition = competition;
+      this.placering = placering;
    }
 
 

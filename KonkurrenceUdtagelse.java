@@ -8,46 +8,48 @@ public class KonkurrenceUdtagelse{
    public void setNewTime()throws FileNotFoundException{
       try{
          File file = new File("trainingtider.txt");
-         File file1 = new File("konkurrencetider");
+         File file1 = new File("konkurrencetider.txt");
          PrintStream output = new PrintStream(new FileOutputStream(file,true));
          PrintStream output1 = new PrintStream(new FileOutputStream(file1,true));
          Scanner input1 = new Scanner(System.in); 
       
-         System.out.println("1:Træning    2:konkurrecne");
+         System.out.println("[1]Training - [2]Konkurrence");
          int answer = input1.nextInt();
          if(answer == 1){
-            System.out.println("Disciplin");
+            System.out.print("Disciplin: ");
             String disciplin = input1.next();   
-            System.out.println("navn");
+            System.out.print("Navn: ");
             String name = input1.next();
-            System.out.println("tid i sekunder");
+            System.out.print("Tid i sekunder: ");
             int tid = input1.nextInt();  
-            System.out.println("dato [dd/mm-yr]");
+            System.out.print("Dato [dd/mm-year]");
             String date = input1.next();
             output.println(disciplin + " " + name + " " + tid + " " + date); 
          }else if (answer == 2){
-            System.out.println("Disciplin");
+            System.out.print("Disciplin: ");
             String disciplin = input1.next();   
-            System.out.println("navn");
+            System.out.print("Navn: ");
             String name = input1.next();
-            System.out.println("tid i sekunder");
+            System.out.print("Tid i sekunder: ");
             int tid = input1.nextInt();  
-            System.out.println("dato [dd/mm-yr]");
+            System.out.println("Dato [dd/mm-yr]");
             String date = input1.next();
-            System.out.println("Stævne");
+            System.out.print("Konkurrence: ");
             String cup = input1.next();
-            System.out.println("placering");
+            System.out.print("Placering: ");
             int placering = input1.nextInt();
             output1.println(disciplin + " " + name + " " + tid + " " + date + " " + cup + " " + placering);       
          }
       
       }catch(Exception i){
-         System.out.println("Wrong input");
+         System.out.println("Forkert input");
+         setNewTime();
       }
    }
  
  
    public void trackTimeTraining(String swimType)throws FileNotFoundException{   
+      map2.clear();
       Scanner input = new Scanner(new File("trainingtider.txt"));
       while (input.hasNext()) {
          String word = input.next();
@@ -78,7 +80,7 @@ public class KonkurrenceUdtagelse{
          }    
       } 
      
-     
+     for(int j = 0 ; j<map2.size() ; j++){
       for(int i = 0; i<map2.size()-1 ; i++){
       
          int tid = map2.get(i).getTid();
@@ -89,13 +91,23 @@ public class KonkurrenceUdtagelse{
          }
       
       }
-      
-      for(Konkurrence m : map2){
-         System.out.println(m.getName() + "/" + m.getTid());
       }
+      if(map2.size() <= 5){
+      
+         for(Konkurrence m : map2){
+         System.out.println("Navn: "+m.getName() + "\t" + "Tid: "+ m.getTid()+" Sekunder");
+      }
+      }else{
+         for(int i = 0 ; i <5 ; i++){
+         System.out.println("Navn: "+map2.get(i).getName()+"\t"+"Tid: "+map2.get(i).getTid()+" Sekunder");
+      }
+      }
+      System.out.println();
+    
    }
    
    public void trackTimeCompetition(String swimType)throws FileNotFoundException{   
+      map2.clear();
       Scanner input = new Scanner(new File("konkurrencetider.txt"));
       while (input.hasNext()) {
          String word = input.next();
@@ -128,7 +140,7 @@ public class KonkurrenceUdtagelse{
          }    
       } 
      
-     
+     for(int j = 0 ; j<map2.size() ; j++){
       for(int i = 0; i<map2.size()-1 ; i++){
       
          int tid = map2.get(i).getTid();
@@ -139,10 +151,18 @@ public class KonkurrenceUdtagelse{
          }
       
       }
-      
-      for(Konkurrence m : map2){
-         System.out.println(m.getName() + "/" + m.getTid()+ "/" + m.getPlacering()+ "/" + m.getCompetition());
       }
+      
+       if(map2.size() <= 5){
+      
+         for(Konkurrence m : map2){
+         System.out.println("Navn: "+m.getName() + "\t" + "Tid: "+m.getTid()+" Sekunder");
+      }}else{
+         for(int i = 0 ; i <5 ; i++){
+         System.out.println("Navn: "+map2.get(i).getName() + "\t" + "Tid: "+map2.get(i).getTid()+ " Sek." + "\t" + "Placering: "+ map2.get(i).getPlacering()+ "\t" +"Konkurrence: "+ map2.get(i).getCompetition());
+      }
+      }
+    System.out.println();   
    }
-   
+  
 }

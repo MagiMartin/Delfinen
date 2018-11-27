@@ -2,7 +2,8 @@ crawl morten 56 11/12-13 middelfart 3
 crawl don 39 10/7-18 fyn 19
 crawl minny 40 8/7-18 sverige 6
 crawl minny 20 30/7-17 jylland 56
-crawl don 38 8/9-18 tyskland 2
+crawl don 5 8/9-18 tyskland 2
 butterfly flamingo 40 1/7-20 polen 100
 butterfly fedte 45 8/10-21 serbien 7
 crawl mogens 55 8/7-18 england 1
+crawl hans 12 10/10-10 finand 1
