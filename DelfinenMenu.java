@@ -2,13 +2,16 @@ import java.util.*;
 import java.io.*;
 
 public class DelfinenMenu{
-
+   
+   //Fields
    private Scanner input = new Scanner(System.in);
    private boolean stop = false;
    private String answer = ""; 
    MemberHandling member = new MemberHandling();
    KonkurrenceUdtagelse udtagelse = new KonkurrenceUdtagelse();
+   Restance restance = new Restance();
    
+   //First menu entry
    public void startMenu()throws InterruptedException, FileNotFoundException{
       
       member.registerMembers();
@@ -47,6 +50,7 @@ public class DelfinenMenu{
       }
    }
 
+   //Formand specific menu
    public void formand()throws InterruptedException,FileNotFoundException{
       System.out.println("Velkommen 'Formand'");
       System.out.println("[1] Opret nyt medlem");
@@ -81,6 +85,7 @@ public class DelfinenMenu{
       }   
    }
 
+   //Kasser specific menu
    public void kassere()throws InterruptedException, FileNotFoundException{
       System.out.println("Velkommen 'Kassere'");
       System.out.println("[1] Ubetalt Kontingent");
@@ -91,7 +96,7 @@ public class DelfinenMenu{
          answer = input.next();
          
          if(answer.equals("1")){
-            member.restance();
+            restance.restance();
             System.out.println("");
             kassere();      
          }
@@ -116,6 +121,7 @@ public class DelfinenMenu{
       } 
    }
    
+   //Coach specific menu
    public void coach()throws InterruptedException,FileNotFoundException{
       System.out.println("Velkommen 'Traner'");
       System.out.println("[1] Se tranings statistik");      

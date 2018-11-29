@@ -1,18 +1,20 @@
 import java.util.*;
 
 public class Konkurrence extends Member{
-
+   
+   //Fields
    private String trainer;
    private int tid;
    private String dato;
    private String competition;
    private int placering;
    ArrayList<String> swimDiscipline = new ArrayList<String>();
-
+   
+   //Constructors
    public Konkurrence(String name,int age,String memberstatus, String memberpart,String membertype, int kontigent){
       super(name,age,memberstatus,memberpart,membertype,kontigent);
    }
-
+   
    public Konkurrence(String name,String trainer,int age,String memberstatus, String memberpart,String membertype, int kontigent, String disciplin1){
       super(name, age,memberstatus,memberpart,membertype,kontigent);
       
@@ -39,17 +41,15 @@ public class Konkurrence extends Member{
       this.placering = placering;
    }
 
-
+   //Getter and Setters
    public String getDisciplin(){
-      
       String discipline = "";
-   
       for(int i=0; i<swimDiscipline.size(); i++){
          discipline += swimDiscipline.get(i)+",";
       }
       return discipline;
-   }
-   
+      }
+      
    public String getTrainer(){
       return trainer;}
    public int getTid(){

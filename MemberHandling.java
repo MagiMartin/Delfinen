@@ -3,13 +3,20 @@ import java.io.*;
 
 public class MemberHandling{
 
+   //Fields
    private String kontigentType[] = {"junior","senior"};
    private int kontigentPris[] = {1000,1600,500};
-   private ArrayList<Member> memberlist = new ArrayList<Member>();
+   private static ArrayList<Member> memberlist = new ArrayList<Member>();
    private int kontigent;
    private String membertype;
    private Scanner input = new Scanner(System.in);
  
+   //Getter for memberlist
+   public static ArrayList<Member> getList(){
+      return (memberlist);
+      }
+   
+   //Read memberfile to memberlist
    public void registerMembers()throws FileNotFoundException{   
       Scanner inputmotion = new Scanner(new File("motionmember.txt"));
       Scanner inputkonkurrence = new Scanner(new File("konkurrencemember.txt"));   
@@ -34,31 +41,8 @@ public class MemberHandling{
          memberlist.add(new Motionist(name,age,status,part,type,kontigent));
       }  
    }
-
-   public void restance(){
-   
-      int rand = (int)(Math.random()*4);
-      int rand1 = (int)(Math.random()*4);
-   
-      System.out.println("");
-      System.out.println("Disse personer skylder kontigent: ");
-      memberlist.get(rand).setBetalt(false);
-      memberlist.get(rand1).setBetalt(false);
-      System.out.println("");
-
-   
-      for(Member m : memberlist){
-         if (m.getBetalt() == false){
-            System.out.println("Navn: "+ m.getName() + " " + "Alder: " + m.getAge() + " " + "Type: " + m.getMemberType() + " " + "Status: "+m.getMemberStatus() + " " +"Aktivitet: "+ m.getMemberPart() + " " +"Belob: "+ m.getKontigent());
-
-         }
-      } 
-      for(Member m : memberlist){
-         m.setBetalt(true);         
-      }
-   
-   }
-    
+ 
+   //Add new member   
    public void newMember(){ 
       try{ 
          System.out.println("");
@@ -114,6 +98,7 @@ public class MemberHandling{
       }
    }
    
+   //Save memberlist in output file
    public void saveMembers()throws FileNotFoundException{   
       PrintStream output = new PrintStream("motionmember.txt");
       PrintStream output1 = new PrintStream("konkurrencemember.txt");
