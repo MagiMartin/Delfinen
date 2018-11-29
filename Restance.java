@@ -2,9 +2,6 @@ import java.util.*;
 
 public class Restance{
 
-   //Field
-   
-
    //Show members in restance
    public void restance(){
    
